@@ -131,7 +131,7 @@
             }
 
             // Fetch and display details data
-            fetchAndDisplayData('gaeul.csv', ["Twitter Name", "Last updated", "URL"], function(data, columns) {
+            fetchAndDisplayData('https://raw.githubusercontent.com/twkenxtis/IVE-fandomList/main/gaeul.csv', ["Twitter Name", "Last updated", "URL"], function(data, columns) {
                 const table = document.getElementById('detailsTable');
                 const header = table.createTHead();
                 const headerRow = header.insertRow();
