@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: 'Seoui', sans-serif;
     background-color: #f4f4f4;
@@ -6,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -98,7 +99,7 @@ body.dark-mode .dark-mode-toggle i {
     }
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for mobile */
 @media (max-width: 768px) {
     .container {
         width: 90vw;
@@ -147,19 +148,6 @@ body.dark-mode .dark-mode-toggle i {
         top: 15px;
         right: 15px;
     }
-}
-
-/* General Styles */
-body {
-    font-family: 'Seoui', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Details Container */
@@ -276,6 +264,7 @@ body.dark-mode table tr:nth-child(even) {
     }
 }
 
+/* Separator Styles */
 .separator {
     background-color: #f4f4f4;
     height: 1px;
@@ -294,7 +283,7 @@ body.dark-mode table tr:nth-child(even) {
     font-weight: bold;
 }
 
-/* Dark mode styles */
+/* Dark mode styles for separator */
 body.dark-mode .separator {
     background-color: #3c3c3c;
 }
@@ -304,76 +293,12 @@ body.dark-mode .separator::before {
     color: #e0e0e0;
 }
 
-/* Dark mode toggle and download link container */
-.icons {
-    position: fixed;
-    top: 10px;
-    right: calc(10px + 1.5 * 40px); /* Move buttons 1.5 moon icon widths to the left */
-    display: flex;
-    align-items: center;
-    z-index: 1000;
-    transition: font-size 0.3s;
-}
-
-/* Dark mode toggle button and download link */
-.dark-mode-toggle,
-.download-link {
-    font-size: 18px;
-    color: #000;
-    margin-left: 15px; /* Space between icons */
-    transition: color 0.3s;
-}
-
-/* Dark mode styles for toggle and download icons */
-body.dark-mode .dark-mode-toggle,
-body.dark-mode .download-link {
-    color: #e0e0e0;
-}
-
-/* Desktop mode adjustments */
-@media (min-width: 769px) {
-    .icons {
-        top: 10px;
-        right: calc(10px + 1.2 * 40px); /* Adjust according to moon icon width */
-    }
-
-    .dark-mode-toggle,
-    .download-link {
-        font-size: 36px;
-    }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .icons {
-        top: 10px;
-        right: calc(10px + 1.2 * 24px); /* Adjust for smaller icons on mobile */
-    }
-
-    .dark-mode-toggle,
-    .download-link {
-        font-size: 22px;
-    }
-}
-
-@media (max-width: 480px) {
-    .icons {
-        top: 15px;
-        right: calc(15px + 1.2 * 20px); /* Adjust for even smaller icons on very small screens */
-    }
-
-    .dark-mode-toggle,
-    .download-link {
-        font-size: 20px;
-    }
-}
-
 /* Footer styles */
 .footer {
     width: 100%;
     background-color: #f4f4f4; /* Light background color for day mode */
     text-align: center;
-    padding: 5px 0;
+    padding: 2px 0;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -387,7 +312,7 @@ body.dark-mode .footer {
 
 /* GitHub link styles */
 .github-link {
-    font-size: 24px; /* Size for the GitHub icon */
+    font-size: 22px; /* Size for the GitHub icon */
     color: #000;
     text-decoration: none;
     transition: color 0.3s;
@@ -398,25 +323,35 @@ body.dark-mode .github-link {
     color: #e0e0e0;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for icons */
 @media (max-width: 768px) {
     .icons {
         top: 10px;
-        right: calc(10px + 1.5 * 24px); /* Adjust for smaller icons on mobile */
+        right: 10px; /* Adjust for mobile layout */
+        flex-direction: row;
+    }
+
+    .dark-mode-toggle {
+        position: fixed;
+        top: 10px;
+        right: 10px; /* Position to the right for mobile */
+        font-size: 16px;
     }
 
     .download-link {
-        font-size: 21px; /* Adjust size for mobile */
+        position: fixed;
+        top: 10px;
+        left: 10px; /* Position to the left for mobile */
+        font-size: 16px;
     }
 }
 
 @media (max-width: 480px) {
-    .icons {
-        top: 15px;
-        right: calc(15px + 1.5 * 20px); /* Adjust for very small screens */
+    .dark-mode-toggle {
+        font-size: 20px;
     }
 
     .download-link {
-        font-size: 18px; /* Adjust size for very small screens */
+        font-size: 20px;
     }
 }
