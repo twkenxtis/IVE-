@@ -131,7 +131,7 @@
             }
 
             // Fetch and display details data
-            fetchAndDisplayData('rei.csv', ["Twitter Name", "Last updated", "URL"], function(data, columns) {
+            fetchAndDisplayData('https://raw.githubusercontent.com/twkenxtis/IVE-fandomList/main/rei.csv', ["Twitter Name", "Last updated", "URL"], function(data, columns) {
                 const table = document.getElementById('detailsTable');
                 const header = table.createTHead();
                 const headerRow = header.insertRow();
@@ -170,7 +170,7 @@
                 tbody.appendChild(separatorRow);
 
                 // Fetch and append groups data
-                fetchAndDisplayData('groups.csv', ["Group Name", "Details", "Link"], function(groupsData) {
+                fetchAndDisplayData('https://raw.githubusercontent.com/twkenxtis/IVE-fandomList/main/groups.csv', ["Group Name", "Details", "Link"], function(groupsData) {
                     groupsData.forEach(row => {
                         const tr = document.createElement('tr');
                         row.forEach((cell, index) => {
