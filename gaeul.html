@@ -170,7 +170,7 @@
                 tbody.appendChild(separatorRow);
 
                 // Fetch and append groups data
-                fetchAndDisplayData('groups.csv', ["Group Name", "Details", "Link"], function(groupsData) {
+                fetchAndDisplayData('https://raw.githubusercontent.com/twkenxtis/IVE-fandomList/main/groups.csv', ["Group Name", "Details", "Link"], function(groupsData) {
                     groupsData.forEach(row => {
                         const tr = document.createElement('tr');
                         row.forEach((cell, index) => {
