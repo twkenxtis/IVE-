@@ -1,0 +1,422 @@
+body {
+    font-family: 'Seoui', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    width: 1200px;
+    height: 75vh;
+    margin: auto;
+}
+
+.person {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: 100%;
+}
+
+.person img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.45);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid transparent;
+    box-sizing: border-box;
+    font-size: 1em; /* Base font size */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #2e2e2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .container .person {
+    background: #3c3c3c;
+}
+
+body.dark-mode .info {
+    background: rgba(50, 50, 50, 0.45);
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000;
+    z-index: 1000;
+    transition: font-size 0.3s;
+}
+
+.dark-mode-toggle i {
+    transition: color 0.3s;
+}
+
+body.dark-mode .dark-mode-toggle i {
+    color: #e0e0e0;
+}
+
+/* Desktop mode adjustments */
+@media (min-width: 769px) {
+    .dark-mode-toggle {
+        font-size: 40px;
+    }
+
+    .info {
+        height: 20%; /* Adjust height for desktop mode */
+        font-size: 1.03em; /* Increase font size by 3% for desktop mode */
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        width: 90vw;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        height: 80vh;
+    }
+
+    .person {
+        aspect-ratio: 16 / 9;
+    }
+
+    .info {
+        padding: 8px;
+        font-size: 1.2em;
+    }
+
+    .dark-mode-toggle {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100vw;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        height: 90vh;
+    }
+
+    .person {
+        aspect-ratio: 16 / 9;
+    }
+
+    .info {
+        padding: 5px;
+        height: 40%;
+        width: 100%;
+        bottom: 0;
+        box-sizing: border-box;
+        font-size: 1em;
+    }
+
+    .dark-mode-toggle {
+        font-size: 20px;
+        top: 15px;
+        right: 15px;
+    }
+}
+
+/* General Styles */
+body {
+    font-family: 'Seoui', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Details Container */
+.details-container {
+    padding: 3px;
+    max-width: 100vw; /* Ensure container fits well on small screens */
+    margin: 5px auto; /* Add margin to ensure proper spacing */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Enable horizontal scrolling if table is too wide */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    max-height: 97vh; /* Limit height to avoid overflowing */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0; /* Remove any additional margin */
+}
+
+/* Header and Cells */
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    vertical-align: middle; /* Center align text vertically */
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Remove hover effect */
+table tr:hover {
+    background-color: transparent;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .details-container {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark-mode table th {
+    background-color: #333;
+}
+
+body.dark-mode table td {
+    border: 1px solid #444;
+}
+
+body.dark-mode table tr:nth-child(even) {
+    background-color: #2c2c2c;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 769px) {
+    .details-container {
+        max-width: 1600px; /* Wider container for larger screens */
+        max-height: 99%;  /* Remove height limit for larger screens */
+    }
+
+    table th, table td {
+        padding: 12px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .details-container {
+        padding: 10px;
+    }
+
+    table th, table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .details-container h1 {
+        font-size: 20px;
+    }
+
+    .details-container p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .details-container {
+        padding: 5px;
+        width: 100vw; /* Ensure container fits the width of the screen */
+    }
+
+    table th, table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .details-container h1 {
+        font-size: 18px;
+    }
+
+    .details-container p {
+        font-size: 14px;
+    }
+}
+
+.separator {
+    background-color: #f4f4f4;
+    height: 1px;
+    border: none;
+    margin: 10px 0;
+    text-align: center;
+    position: relative;
+}
+
+.separator::before {
+    content: 'Groups';
+    display: inline-block;
+    padding: 5px 10px;
+    background: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Dark mode styles */
+body.dark-mode .separator {
+    background-color: #3c3c3c;
+}
+
+body.dark-mode .separator::before {
+    background: #444;
+    color: #e0e0e0;
+}
+
+/* Dark mode toggle and download link container */
+.icons {
+    position: fixed;
+    top: 10px;
+    right: calc(10px + 1.5 * 40px); /* Move buttons 1.5 moon icon widths to the left */
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: font-size 0.3s;
+}
+
+/* Dark mode toggle button and download link */
+.dark-mode-toggle,
+.download-link {
+    font-size: 18px;
+    color: #000;
+    margin-left: 15px; /* Space between icons */
+    transition: color 0.3s;
+}
+
+/* Dark mode styles for toggle and download icons */
+body.dark-mode .dark-mode-toggle,
+body.dark-mode .download-link {
+    color: #e0e0e0;
+}
+
+/* Desktop mode adjustments */
+@media (min-width: 769px) {
+    .icons {
+        top: 10px;
+        right: calc(10px + 1.2 * 40px); /* Adjust according to moon icon width */
+    }
+
+    .dark-mode-toggle,
+    .download-link {
+        font-size: 36px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .icons {
+        top: 10px;
+        right: calc(10px + 1.2 * 24px); /* Adjust for smaller icons on mobile */
+    }
+
+    .dark-mode-toggle,
+    .download-link {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .icons {
+        top: 15px;
+        right: calc(15px + 1.2 * 20px); /* Adjust for even smaller icons on very small screens */
+    }
+
+    .dark-mode-toggle,
+    .download-link {
+        font-size: 20px;
+    }
+}
+
+/* Footer styles */
+.footer {
+    width: 100%;
+    background-color: #f4f4f4; /* Light background color for day mode */
+    text-align: center;
+    padding: 5px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode footer */
+body.dark-mode .footer {
+    background-color: #3a3a3a; /* Darker gray background color for night mode */
+}
+
+/* GitHub link styles */
+.github-link {
+    font-size: 24px; /* Size for the GitHub icon */
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+/* Dark mode GitHub icon */
+body.dark-mode .github-link {
+    color: #e0e0e0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .icons {
+        top: 10px;
+        right: calc(10px + 1.5 * 24px); /* Adjust for smaller icons on mobile */
+    }
+
+    .download-link {
+        font-size: 21px; /* Adjust size for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .icons {
+        top: 15px;
+        right: calc(15px + 1.5 * 20px); /* Adjust for very small screens */
+    }
+
+    .download-link {
+        font-size: 18px; /* Adjust size for very small screens */
+    }
+}

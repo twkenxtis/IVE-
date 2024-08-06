@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaeul</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Seoui:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Seoui', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .details-container {
+            padding: 5px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f4f4f4;
+        }
+
+        td a {
+            color: #1a0dab;
+            text-decoration: none;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        .separator {
+            background-color: #f4f4f4;
+            height: 1px;
+            border: none;
+            margin: 10px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .separator::before {
+            content: 'Groups';
+            display: inline-block;
+            padding: 5px 10px;
+            background: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode .separator {
+            background-color: #3c3c3c;
+        }
+
+        body.dark-mode .separator::before {
+            background: #444;
+            color: #e0e0e0;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="details-container">
+        <h1></h1>
+        <table id="detailsTable">
+            <!-- Table content will be loaded by JavaScript -->
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to parse CSV content
+            function parseCSV(text) {
+                const rows = text.trim().split('\n');
+                return rows.map(row => row.split(','));
+            }
+    
+            // Function to fetch and display CSV data
+            function fetchAndDisplayData(dataUrl, columns, callback) {
+                fetch(dataUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(text => {
+                        const data = parseCSV(text);
+                        callback(data, columns);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching or parsing data:', error);
+                        document.getElementById('detailsTable').innerHTML = '<p>Error fetching data.</p>';
+                    });
+            }
+
+            // Fetch and display details data
+            fetchAndDisplayData('gaeul.csv', ["Twitter Name", "Last updated", "URL"], function(data, columns) {
+                const table = document.getElementById('detailsTable');
+                const header = table.createTHead();
+                const headerRow = header.insertRow();
+                columns.forEach(text => {
+                    const th = document.createElement('th');
+                    th.textContent = text;
+                    headerRow.appendChild(th);
+                });
+
+                const tbody = table.createTBody();
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    row.forEach((cell, index) => {
+                        const td = document.createElement('td');
+                        if (index === 2) { // URL column
+                            const link = document.createElement('a');
+                            link.href = cell.trim();
+                            link.textContent = cell.trim();
+                            link.target = '_blank';
+                            link.rel = 'noopener noreferrer';
+                            td.appendChild(link);
+                        } else {
+                            td.textContent = cell.trim();
+                        }
+                        tr.appendChild(td);
+                    });
+                    tbody.appendChild(tr);
+                });
+
+                // Insert an empty row with a "Groups" label between the two datasets
+                const separatorRow = document.createElement('tr');
+                const separatorCell = document.createElement('td');
+                separatorCell.colSpan = columns.length;
+                separatorCell.classList.add('separator');
+                separatorRow.appendChild(separatorCell);
+                tbody.appendChild(separatorRow);
+
+                // Fetch and append groups data
+                fetchAndDisplayData('groups.csv', ["Group Name", "Details", "Link"], function(groupsData) {
+                    groupsData.forEach(row => {
+                        const tr = document.createElement('tr');
+                        row.forEach((cell, index) => {
+                            const td = document.createElement('td');
+                            if (index === 2) { // URL column
+                                const link = document.createElement('a');
+                                link.href = cell.trim();
+                                link.textContent = cell.trim();
+                                link.target = '_blank';
+                                link.rel = 'noopener noreferrer';
+                                td.appendChild(link);
+                            } else {
+                                td.textContent = cell.trim();
+                            }
+                            tr.appendChild(td);
+                        });
+                        tbody.appendChild(tr);
+                    });
+                });
+            });
+
+            // Load dark mode preference from localStorage
+            const savedDarkMode = localStorage.getItem('dark-mode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>
